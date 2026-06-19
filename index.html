@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schroders Investments | Premium Wealth Management</title>
+    <meta name="description" content="Secure your financial future with institutional-grade investment strategies, wealth management, and global market portfolios.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <div class="p-2.5 bg-blue-600 rounded-lg text-white mr-3 shadow-md shadow-blue-200">
+                        <i class="fa-solid fa-chart-line-up text-xl flex"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900">SCHRODERS<span class="text-blue-600 font-medium text-sm block tracking-widest uppercase -mt-1">Investments</span></span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <button onclick="navigateTo('home')" class="text-blue-600 hover:text-blue-700 transition">Home</button>
+                    <button onclick="navigateTo('about')" class="text-slate-600 hover:text-blue-600 transition">About Us</button>
+                    <button onclick="navigateTo('services')" class="text-slate-600 hover:text-blue-600 transition">Services</button>
+                    <button onclick="navigateTo('plans')" class="text-slate-600 hover:text-blue-600 transition">Plans</button>
+                    <button onclick="navigateTo('faq')" class="text-slate-600 hover:text-blue-600 transition">FAQ</button>
+                    <button onclick="navigateTo('blog')" class="text-slate-600 hover:text-blue-600 transition">Blog</button>
+                    <button onclick="navigateTo('contact')" class="text-slate-600 hover:text-blue-600 transition">Contact</button>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="navigateTo('login')" class="text-slate-600 hover:text-blue-600 text-sm font-semibold transition">Sign In</button>
+                    <button onclick="navigateTo('register')" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition">Open Account</button>
+                    <button onclick="navigateTo('dashboard')" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2"><i class="fa-solid fa-wallet text-xs"></i> Portal</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="navigateTo('home')" class="block w-full text-left py-2 text-slate-700 font-medium">Home</button>
+            <button onclick="navigateTo('about')" class="block w-full text-left py-2 text-slate-700 font-medium">About Us</button>
+            <button onclick="navigateTo('services')" class="block w-full text-left py-2 text-slate-700 font-medium">Services</button>
+            <button onclick="navigateTo('plans')" class="block w-full text-left py-2 text-slate-700 font-medium">Investment Plans</button>
+            <button onclick="navigateTo('faq')" class="block w-full text-left py-2 text-slate-700 font-medium">FAQ</button>
+            <button onclick="navigateTo('blog')" class="block w-full text-left py-2 text-slate-700 font-medium">Blog</button>
+            <button onclick="navigateTo('contact')" class="block w-full text-left py-2 text-slate-700 font-medium">Contact Us</button>
+            <hr class="my-2 border-slate-100">
+            <div class="grid grid-cols-2 gap-2 pt-2">
+                <button onclick="navigateTo('login')" class="text-center py-2.5 border border-slate-200 rounded-lg font-medium text-slate-700 text-sm">Sign In</button>
+                <button onclick="navigateTo('register')" class="text-center py-2.5 bg-blue-600 text-white rounded-lg font-medium text-sm">Register</button>
+            </div>
+            <button onclick="navigateTo('dashboard')" class="block w-full text-center py-2.5 bg-slate-900 text-white rounded-lg font-medium text-sm mt-2"><i class="fa-solid fa-wallet text-xs mr-1"></i> Client Dashboard</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS (SPA ROUTER) -->
+    <main class="flex-grow">
+
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page-section active">
+            <!-- Hero Section -->
+            <section class="relative bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white py-24 lg:py-32 overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="lg:w-2/3">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-6">
+                            <i class="fa-solid fa-shield-halved"></i> Tier-1 Institutional Asset Management
+                        </span>
+                        <h1 class="serif-title text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
+                            Intelligent wealth creation for the global investor.
+                        </h1>
+                        <p class="text-lg text-slate-300 mb-10 max-w-xl font-light leading-relaxed">
+                            Navigate international markets with systematic, algorithmic, and expertly managed capital portfolios built to outperform volatility.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="navigateTo('register')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg shadow-lg shadow-blue-900/30 transition text-center">Get Started Today</button>
+                            <button onclick="navigateTo('plans')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-lg border border-white/10 backdrop-blur-sm transition text-center">View Asset Plans</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Market Stats Ticker Simulation -->
+            <div class="bg-slate-950 border-y border-slate-800 text-xs py-3 text-slate-400 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 flex space-x-8 animate-pulse justify-between items-center">
+                    <div><span class="text-slate-500 font-bold">S&P 500</span> <span class="text-emerald-400 font-medium">5,117.01 (+0.42%)</span></div>
+                    <div class="hidden sm:block"><span class="text-slate-500 font-bold">NASDAQ</span> <span class="text-emerald-400 font-medium">16,118.50 (+0.81%)</span></div>
+                    <div><span class="text-slate-500 font-bold">SCHRODERS ALPHA FUND</span> <span class="text-emerald-400 font-medium">Accumulating (+14.6% YTD)</span></div>
+                    <div class="hidden md:block"><span class="text-slate-500 font-bold">BTC/USD</span> <span class="text-rose-400 font-medium">$67,240 (-1.12%)</span></div>
+                </div>
+            </div>
+
+            <!-- Statistics Grid -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-8 rounded-xl shadow-xl border border-slate-100">
+                    <div class="text-center md:border-r border-slate-100 p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-slate-900">$4.2B+</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Assets Under Management</p>
+                    </div>
+                    <div class="text-center md:border-r border-slate-100 p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-slate-900">142K</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Global Active Clients</p>
+                    </div>
+                    <div class="text-center md:border-r border-slate-100 p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-slate-900">99.4%</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Retention Rate</p>
+                    </div>
+                    <div class="text-center p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-blue-600">No. 1</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Wealth Advisory 2026</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Brief Overview Section -->
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-blue-600 font-bold tracking-widest text-xs uppercase block mb-3">Institutional Grade Ecosystem</span>
+                        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-slate-900 mb-6">Why discerning global institutions select Schroders.</h2>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            Founded on transparency and driven by rigorous quantitative execution, Schroders Investments bridges the gap between individual accredited investors and elite, modern market operations.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 text-blue-600"><i class="fa-solid fa-circle-check"></i></div>
+                                <div><strong>Automated Hedging:</strong> Adaptive algorithmic mechanisms minimize downside risk across multi-asset categories.</div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 text-blue-600"><i class="fa-solid fa-circle-check"></i></div>
+                                <div><strong>Regulatory Frameworks:</strong> Fully compliant tier-one management with custodial protection parameters.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-tr from-slate-100 to-slate-200 rounded-2xl p-4 border border-slate-200/60 shadow-inner relative">
+                        <!-- Simulated Chart Asset Overlay -->
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-100">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Performance Matrix</h4>
+                                    <p class="text-xs text-slate-500">Schroders Compound Growth</p>
+                                </div>
+                                <span class="bg-emerald-50 text-emerald-700 text-xs px-2.5 py-1 rounded font-bold">+24.8% YoY</span>
+                            </div>
+                            <div class="h-40 flex items-end gap-2 pt-4 border-b border-l border-slate-100 px-2">
+                                <div class="w-full bg-slate-200 rounded-t h-1/4"></div>
+                                <div class="w-full bg-slate-300 rounded-t h-2/5"></div>
+                                <div class="w-full bg-blue-400 rounded-t h-1/2"></div>
+                                <div class="w-full bg-blue-500 rounded-t h-2/3"></div>
+                                <div class="w-full bg-blue-600 rounded-t h-5/6"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-2 text-center">Historical performance is indicative of strong strategic alpha models.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Slider Section -->
+            <section class="bg-slate-900 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-xl mx-auto mb-16">
+                        <span class="text-blue-400 uppercase tracking-widest text-xs font-bold">Endorsements</span>
+                        <h2 class="serif-title text-3xl font-bold mt-2">Trusted by Global Portfolio Leaders</h2>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700/50">
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-300 text-sm italic mb-6">"The systemic yields provided by Schroders' real estate capital structures allowed our firm to diversify risk safely during high inflation eras."</p>
+                            <div>
+                                <p class="font-bold text-white text-sm">Marcus Vance</p>
+                                <p class="text-xs text-slate-500">Chief Asset Allocator, Avanti Corp</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700/50">
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-300 text-sm italic mb-6">"Their algorithmic quantitative equities fund outperformed standard index trackers by over 12% in my private high-net-worth portfolio."</p>
+                            <div>
+                                <p class="font-bold text-white text-sm">Helena Rostova</p>
+                                <p class="text-xs text-slate-500">Private Accredited Wealth Client</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700/50">
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-300 text-sm italic mb-6">"Prompt withdrawals, comprehensive portfolio dashboards, and impeccable institutional support. A stellar platform."</p>
+                            <div>
+                                <p class="font-bold text-white text-sm">David Chen</p>
+                                <p class="text-xs text-slate-500">Managing Director, DC Venture Group</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Global Call to Action -->
+            <section class="py-16 bg-blue-600 text-white text-center relative overflow-hidden">
+                <div class="max-w-4xl mx-auto px-4 relative z-10">
+                    <h2 class="serif-title text-3xl font-bold mb-4">Empower your capital reserves today.</h2>
+                    <p class="text-blue-100 mb-8 max-w-lg mx-auto text-sm">Account onboarding requires minimal documentation setup. Complete processing takes less than 5 minutes.</p>
+                    <button onclick="navigateTo('register')" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-md">Register Wealth Account</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ABOUT US PAGE -->
+        <div id="page-about" class="page-section py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Architecting Global Financial Security</h1>
+                    <p class="text-slate-600">For over a decade, Schroders Investments has designed predictive wealth mechanisms tailored to risk mitigation and long-term macro-alpha generation.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-900">Our Strategic Philosophy</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">We believe traditional banking assets no longer represent sufficient safe-havens for sustained capital preservation. Modern geopolitical paradigms require multi-asset portfolio flexibility, algorithmic balance adjustments, and institutional agility.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">Our investment matrices run on proprietary server systems, monitoring commodities markets, sovereign bond performance spreads, and emergent digital tokenization parameters to ensure alpha distribution channels remain continuously functional.</p>
+                    </div>
+                    <div class="bg-slate-900 text-white p-8 rounded-2xl border border-slate-800">
+                        <h4 class="font-bold text-blue-400 uppercase tracking-widest text-xs mb-4">Core Structural Directives</h4>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-building-columns text-blue-500"></i> Absolute regulatory validation protocols</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-fingerprint text-blue-500"></i> Multi-sig tier-1 cold custodial vaults</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-microchip text-blue-500"></i> AI-integrated systematic data risk models</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES PAGE -->
+        <div id="page-services" class="page-section py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Elite Asset Allocation Sectors</h1>
+                    <p class="text-slate-600 text-sm">We provide optimized operational deployment vehicles across premium market avenues.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-landmark"></i></div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-3">Institutional Wealth Management</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">Bespoke portfolio advisory blueprints structured uniquely for cross-border private operations and high-net-worth familial offices.</p>
+                        <button onclick="navigateTo('plans')" class="text-blue-600 font-semibold text-xs flex items-center gap-1 hover:gap-2 transition">Explore Strategy <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-cubes"></i></div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-3">Algorithmic Arbitrage Execution</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">High-speed system deployment checking micro-inefficiencies across global cryptocurrency structures and traditional forex indices.</p>
+                        <button onclick="navigateTo('plans')" class="text-blue-600 font-semibold text-xs flex items-center gap-1 hover:gap-2 transition">Explore Strategy <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-city"></i></div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-3">Commercial Real Estate Syndication</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">Direct fractional ownership structures targeting institutional warehouse space, tech hubs, and multi-tenant high-density infrastructure assets.</p>
+                        <button onclick="navigateTo('plans')" class="text-blue-600 font-semibold text-xs flex items-center gap-1 hover:gap-2 transition">Explore Strategy <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVESTMENT PLANS PAGE -->
+        <div id="page-plans" class="page-section py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Strategic Capital Tiers</h1>
+                    <p class="text-slate-600 text-sm">Select an optimal operational blueprint aligned precisely to your deployment goals.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                    <!-- Plan 1 -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-8 flex flex-col justify-between hover:shadow-lg transition">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Tier 01</span>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Alpha Core Portfolio</h3>
+                            <div class="mb-6"><span class="text-4xl font-extrabold text-slate-900">1.8%</span> <span class="text-slate-500 text-sm">/ Daily Yield</span></div>
+                            <ul class="space-y-3 text-xs text-slate-600 mb-8 border-t border-slate-100 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Min Allocation: <strong>$500</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Max Allocation: <strong>$9,999</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Capital Lock Duration: <strong>14 Days</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Smart Portfolio Rebalancing</li>
+                            </ul>
+                        </div>
+                        <button onclick="navigateTo('register')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-lg text-sm transition">Initiate Position</button>
+                    </div>
+                    <!-- Plan 2 (Featured) -->
+                    <div class="bg-white border-2 border-blue-600 rounded-xl p-8 flex flex-col justify-between shadow-xl relative transform lg:-translate-y-2">
+                        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase">Most Selected Strategic Unit</span>
+                        <div>
+                            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-1 mt-2">Tier 02</span>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Institutional Arbitrage</h3>
+                            <div class="mb-6"><span class="text-4xl font-extrabold text-slate-900">2.5%</span> <span class="text-slate-500 text-sm">/ Daily Yield</span></div>
+                            <ul class="space-y-3 text-xs text-slate-600 mb-8 border-t border-slate-100 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Min Allocation: <strong>$10,000</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Max Allocation: <strong>$49,999</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Capital Lock Duration: <strong>30 Days</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Priority Account Officer Routing</li>
+                            </ul>
+                        </div>
+                        <button onclick="navigateTo('register')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg text-sm transition shadow-md shadow-blue-200">Initiate Position</button>
+                    </div>
+                    <!-- Plan 3 -->
+                    <div class="bg-slate-900 text-white rounded-xl p-8 flex flex-col justify-between hover:shadow-lg transition">
+                        <div>
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-1">Tier 03</span>
+                            <h3 class="text-xl font-bold text-white mb-4">Sovereign Macro Fund</h3>
+                            <div class="mb-6"><span class="text-4xl font-extrabold text-white">3.8%</span> <span class="text-slate-400 text-sm">/ Daily Yield</span></div>
+                            <ul class="space-y-3 text-xs text-slate-400 mb-8 border-t border-slate-800 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Min Allocation: <strong>$50,000</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Max Allocation: <strong>Unlimited</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Capital Lock Duration: <strong>60 Days</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Direct Real-time Liquidity Streaming</li>
+                            </ul>
+                        </div>
+                        <button onclick="navigateTo('register')" class="w-full bg-white text-slate-900 hover:bg-slate-100 font-medium py-2.5 rounded-lg text-sm transition">Initiate Position</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ PAGE -->
+        <div id="page-faq" class="page-section py-16 bg-slate-50">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h1>
+                    <p class="text-slate-600 text-sm">Essential operational governance parameters clear and accessible.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">How do I fund my capital deposit allocation?</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">We support instantly cleared modern payment structures including automated wire processing, institutional stablecoins (USDT/USDC ERC-20 networks), and direct instant multi-banking links via your portfolio gateway dashboard.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">What is the exact settlement duration for withdrawal processing requests?</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Standard retail liquidity allocations clear within 2 to 6 hours. High-net-worth sovereign enterprise tier clearing limits are subjected to multi-signature validation loops, guaranteeing transmission in under 12 hours max.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">Are there hidden operational upkeep percentages?</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Zero hidden fees. Schroders operates strictly under an performance-integrated architecture—we generate our operational yields directly via market alpha overperformance targets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOG PAGE -->
+        <div id="page-blog" class="page-section py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Schroders Insights & Market Intelligence</h1>
+                    <p class="text-slate-600 text-sm">Macroeconomic quantitative research compiled weekly by asset advisory units.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Post 1 -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition">
+                        <div class="h-48 bg-slate-800 relative flex items-center justify-center text-slate-600 text-4xl"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="p-6">
+                            <span class="text-blue-600 text-[10px] font-bold uppercase tracking-wider block mb-2">Macro Strategy</span>
+                            <h3 class="font-bold text-base text-slate-900 mb-3 hover:text-blue-600 cursor-pointer">Interest Rate Normalization Trends: 2026 Sovereign Analysis</h3>
+                            <p class="text-slate-600 text-xs line-clamp-3 mb-4">Evaluating central banking adjustment trends and positioning multi-asset portfolios to leverage changing bond yield curvatures.</p>
+                            <span class="text-slate-400 text-[10px]">June 15, 2026 • 6 min read</span>
+                        </div>
+                    </div>
+                    <!-- Post 2 -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition">
+                        <div class="h-48 bg-slate-900 relative flex items-center justify-center text-slate-600 text-4xl"><i class="fa-solid fa-coins"></i></div>
+                        <div class="p-6">
+                            <span class="text-blue-600 text-[10px] font-bold uppercase tracking-wider block mb-2">Digital Commodities</span>
+                            <h3 class="font-bold text-base text-slate-900 mb-3 hover:text-blue-600 cursor-pointer">Tokenized Liquidity Networks & Cross-Border Corporate Settlements</h3>
+                            <p class="text-slate-600 text-xs line-clamp-3 mb-4">How instant multi-sig smart contracts are eliminating banking delays for enterprise asset distribution models.</p>
+                            <span class="text-slate-400 text-[10px]">June 11, 2026 • 4 min read</span>
+                        </div>
+                    </div>
+                    <!-- Post 3 -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition">
+                        <div class="h-48 bg-slate-950 relative flex items-center justify-center text-slate-600 text-4xl"><i class="fa-solid fa-city"></i></div>
+                        <div class="p-6">
+                            <span class="text-blue-600 text-[10px] font-bold uppercase tracking-wider block mb-2">Real Estate</span>
+                            <h3 class="font-bold text-base text-slate-900 mb-3 hover:text-blue-600 cursor-pointer">Commercial Space vs Tech-Logistics Distribution Hubs</h3>
+                            <p class="text-slate-600 text-xs line-clamp-3 mb-4">A comparative study analyzing shifting yield structures within suburban infrastructure asset allocation sectors.</p>
+                            <span class="text-slate-400 text-[10px]">June 02, 2026 • 8 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT US PAGE -->
+        <div id="page-contact" class="page-section py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-3 gap-12 bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-slate-100">
+                    <div class="lg:col-span-1 space-y-6">
+                        <div>
+                            <h1 class="serif-title text-3xl font-bold text-slate-900 mb-2">Connect with Us</h1>
+                            <p class="text-slate-500 text-xs">Our institutional concierges sit available globally around the clock.</p>
+                        </div>
+                        <div class="space-y-4 text-xs text-slate-600">
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-blue-600 text-base"></i> 31 Gresham Street, London, EC2V 7QA, United Kingdom</div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-blue-600 text-base"></i> institutions@schroders-investments.com</div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-blue-600 text-base"></i> +44 (0) 20 7658 6000</div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <form onsubmit="event.preventDefault(); alert('Message dispatched. An asset relations representative will reach out shortly.');" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Full Legal Name</label>
+                                    <input type="text" required class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Corporate/Personal Email</label>
+                                    <input type="email" required class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Inquiry Category Target</label>
+                                <select class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600 bg-white">
+                                    <option>Institutional Wealth Allocation ($50k+)</option>
+                                    <option>Retail Client Solutions Portfolio Setup</option>
+                                    <option>Corporate Partnership Proposals</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Message Body</label>
+                                <textarea rows="4" required class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600"></textarea>
+                            </div>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition shadow-md">Transmit Secure Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTRATION PAGE -->
+        <div id="page-register" class="page-section py-16 bg-slate-100/60 min-h-[80vh] flex items-center">
+            <div class="max-w-md mx-auto w-full px-4">
+                <div class="bg-white p-8 rounded-xl shadow-xl border border-slate-200">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex p-2.5 bg-blue-50 text-blue-600 rounded-lg mb-2"><i class="fa-solid fa-user-plus text-xl"></i></div>
+                        <h2 class="font-bold text-xl text-slate-900">Create Investment Account</h2>
+                        <p class="text-slate-500 text-xs mt-1">Begin global market wealth deployment</p>
+                    </div>
+                    <form onsubmit="event.preventDefault(); navigateTo('dashboard');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Full Legal Name</label>
+                            <input type="text" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Email Address</label>
+                            <input type="email" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Secure Password</label>
+                            <input type="password" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div class="flex items-center gap-2 py-1">
+                            <input type="checkbox" required id="terms" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                            <label for="terms" class="text-slate-500 text-[11px]">I confirm regulatory compliance and accept terms of usage.</label>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-sm transition">Register Corporate Vault</button>
+                    </form>
+                    <p class="text-xs text-center text-slate-500 mt-6">Existing allocation profile? <button onclick="navigateTo('login')" class="text-blue-600 font-semibold hover:underline">Sign In</button></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGIN PAGE -->
+        <div id="page-login" class="page-section py-16 bg-slate-100/60 min-h-[80vh] flex items-center">
+            <div class="max-w-md mx-auto w-full px-4">
+                <div class="bg-white p-8 rounded-xl shadow-xl border border-slate-200">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex p-2.5 bg-blue-50 text-blue-600 rounded-lg mb-2"><i class="fa-solid fa-lock-keyhole text-xl"></i></div>
+                        <h2 class="font-bold text-xl text-slate-900">Secure Client Access</h2>
+                        <p class="text-slate-500 text-xs mt-1">Accessing encrypted portfolio environments</p>
+                    </div>
+                    <form onsubmit="event.preventDefault(); navigateTo('dashboard');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Account Email Address</label>
+                            <input type="email" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><label class="text-xs font-medium text-slate-600">Password</label><a href="#" class="text-blue-600 text-[11px] hover:underline">Reset Phrase?</a></div>
+                            <input type="password" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-sm transition shadow-md shadow-blue-100">Authorize Session</button>
+                    </form>
+                    <p class="text-xs text-center text-slate-500 mt-6">New asset management applicant? <button onclick="navigateTo('register')" class="text-blue-600 font-semibold hover:underline">Open Account</button></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLIENT PORTFOLIO DASHBOARD -->
+        <div id="page-dashboard" class="page-section py-10 bg-slate-900 text-slate-100 min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Dashboard Welcome Banner -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-6 mb-8 gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-circle-user text-blue-500"></i> Premium Wealth Vault</h1>
+                        <p class="text-slate-400 text-xs mt-1">Account reference status: <span class="text-emerald-400 font-medium font-mono">SCH-9402-ACTIVE</span></p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="alert('Secure dynamic wire link generation active. Please interface via institutions@schroders-investments.com if limits exceed $100k.');" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2.5 rounded-lg shadow transition flex items-center gap-1.5"><i class="fa-solid fa-money-bill-transfer"></i> Deposit Capital</button>
+                        <button onclick="alert('Liquidity execution screen operational. Processing settlement time: 2 hours.');" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-xs px-4 py-2.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-solid fa-arrow-up-from-bracket"></i> Liquidate/Withdraw</button>
+                    </div>
+                </div>
+
+                <!-- Financial Stats Matrix Summary Boxes -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2"><span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Account Value</span><i class="fa-solid fa-vault text-blue-500 text-sm"></i></div>
+                        <p class="text-3xl font-extrabold font-mono text-white">$124,580.40</p>
+                        <span class="text-[10px] text-emerald-400 flex items-center gap-1 mt-1"><i class="fa-solid fa-caret-up"></i> +$2,410.15 accrued this calendar week</span>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2"><span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Net Accumulation Profits</span><i class="fa-solid fa-chart-line text-emerald-400 text-sm"></i></div>
+                        <p class="text-3xl font-extrabold font-mono text-emerald-400">+$18,940.22</p>
+                        <span class="text-[10px] text-slate-400 block mt-1">Total combined historical strategic performance yield</span>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2"><span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Active Capital Deployments</span><i class="fa-solid fa-circle-nodes text-amber-400 text-sm"></i></div>
+                        <p class="text-3xl font-extrabold font-mono text-white">02 <span class="text-xs text-slate-500 font-sans font-normal">Active Positions</span></p>
+                        <span class="text-[10px] text-amber-400 block mt-1">Tier-2 Institutional Arbitrage Strategy processing</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Analytics Lists Table Mock -->
+                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-6">
+                    <h3 class="font-bold text-base text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-list-check text-blue-500"></i> Active Deployment Allocations</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 uppercase text-[10px] tracking-wider">
+                                <tr>
+                                    <th class="p-4">Strategic Allocation Category</th>
+                                    <th class="p-4">Principal Value</th>
+                                    <th class="p-4">Daily Yield Factor</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4">Term Expiry Lock</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/50">
+                                <tr>
+                                    <td class="p-4 font-semibold text-white">Institutional Arbitrage Asset Unit</td>
+                                    <td class="p-4 font-mono">$75,000.00</td>
+                                    <td class="p-4 text-emerald-400 font-mono">2.5% / day</td>
+                                    <td class="p-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Compounding</span></td>
+                                    <td class="p-4 text-slate-400 font-mono">18 Days Remaining</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold text-white">Alpha Core Liquid Reserve Portfolio</td>
+                                    <td class="p-4 font-mono">$30,640.18</td>
+                                    <td class="p-4 text-emerald-400 font-mono">1.8% / day</td>
+                                    <td class="p-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Compounding</span></td>
+                                    <td class="p-4 text-slate-400 font-mono">02 Days Remaining</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER DESIGN -->
+    <footer class="bg-slate-950 text-slate-400 text-xs border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Corporate Offices</h5>
+                    <p class="leading-relaxed text-slate-500">London, United Kingdom<br>Frankfurt, Germany<br>Singapore FinTech Quarter</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Strategic Access</h5>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><button onclick="navigateTo('plans')" class="hover:text-white transition">Asset Investment Tiers</button></li>
+                        <li><button onclick="navigateTo('services')" class="hover:text-white transition">Quantitative Research Services</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Governance</h5>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><button onclick="navigateTo('faq')" class="hover:text-white transition">FAQ Documentation</button></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Custody Clauses</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Secure Networks</h5>
+                    <div class="flex gap-3 text-base mt-2">
+                        <a href="#" class="hover:text-white text-slate-600 transition"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-white text-slate-600 transition"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="hover:text-white text-slate-600 transition"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-slate-900 my-6">
+            <p class="text-center text-slate-600 text-[11px] leading-relaxed">
+                &copy; 2026 Schroders Investments System Inc. All institutional asset operations are protected by multi-signature tier-1 security custody frameworks. Historical performance matrices present zero absolute guarantees of future market expansion alpha.
+            </p>
+        </div>
+    </footer>
+
+    <!-- LIVE CHET POPUP SIMULATOR WIDGET -->
+    <div id="live-chat" class="fixed bottom-6 right-6 z-50 bg-white border border-slate-200 p-4 rounded-xl shadow-2xl w-72 hidden md:block">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-3">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-bold text-xs text-slate-900">Institutional Concierge</span>
+            </div>
+            <i class="fa-solid fa-headset text-slate-400"></i>
+        </div>
+        <p class="text-slate-600 text-[11px] leading-relaxed mb-3">Welcome to Schroders Secure Comms Desk. Let us know if you require bespoke corporate tier setup advice.</p>
+        <button onclick="alert('Secure encrypted channel initializing... Use support@schroders-investments.com for urgent queues.');" class="w-full bg-blue-600 text-white text-center py-2 rounded-lg font-semibold text-xs shadow transition hover:bg-blue-700">Initialize Chat</button>
+    </div>
+
+    <!-- SIMPLE JAVASCRIPT SINGLE PAGE ROUTER -->
+    <script>
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show requested page
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            // Close mobile menu layout if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Mobile Menu Button Functionality Trigger
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schroders Investments | Premium Wealth Management</title>
+    <meta name="description" content="Secure your financial future with institutional-grade investment strategies, wealth management, and global market portfolios.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <div class="p-2.5 bg-blue-600 rounded-lg text-white mr-3 shadow-md shadow-blue-200">
+                        <i class="fa-solid fa-chart-line-up text-xl flex"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900">SCHRODERS<span class="text-blue-600 font-medium text-sm block tracking-widest uppercase -mt-1">Investments</span></span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <button onclick="navigateTo('home')" class="text-blue-600 hover:text-blue-700 transition">Home</button>
+                    <button onclick="navigateTo('about')" class="text-slate-600 hover:text-blue-600 transition">About Us</button>
+                    <button onclick="navigateTo('services')" class="text-slate-600 hover:text-blue-600 transition">Services</button>
+                    <button onclick="navigateTo('plans')" class="text-slate-600 hover:text-blue-600 transition">Plans</button>
+                    <button onclick="navigateTo('faq')" class="text-slate-600 hover:text-blue-600 transition">FAQ</button>
+                    <button onclick="navigateTo('blog')" class="text-slate-600 hover:text-blue-600 transition">Blog</button>
+                    <button onclick="navigateTo('contact')" class="text-slate-600 hover:text-blue-600 transition">Contact</button>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="navigateTo('login')" class="text-slate-600 hover:text-blue-600 text-sm font-semibold transition">Sign In</button>
+                    <button onclick="navigateTo('register')" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition">Open Account</button>
+                    <button onclick="navigateTo('dashboard')" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2"><i class="fa-solid fa-wallet text-xs"></i> Portal</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="navigateTo('home')" class="block w-full text-left py-2 text-slate-700 font-medium">Home</button>
+            <button onclick="navigateTo('about')" class="block w-full text-left py-2 text-slate-700 font-medium">About Us</button>
+            <button onclick="navigateTo('services')" class="block w-full text-left py-2 text-slate-700 font-medium">Services</button>
+            <button onclick="navigateTo('plans')" class="block w-full text-left py-2 text-slate-700 font-medium">Investment Plans</button>
+            <button onclick="navigateTo('faq')" class="block w-full text-left py-2 text-slate-700 font-medium">FAQ</button>
+            <button onclick="navigateTo('blog')" class="block w-full text-left py-2 text-slate-700 font-medium">Blog</button>
+            <button onclick="navigateTo('contact')" class="block w-full text-left py-2 text-slate-700 font-medium">Contact Us</button>
+            <hr class="my-2 border-slate-100">
+            <div class="grid grid-cols-2 gap-2 pt-2">
+                <button onclick="navigateTo('login')" class="text-center py-2.5 border border-slate-200 rounded-lg font-medium text-slate-700 text-sm">Sign In</button>
+                <button onclick="navigateTo('register')" class="text-center py-2.5 bg-blue-600 text-white rounded-lg font-medium text-sm">Register</button>
+            </div>
+            <button onclick="navigateTo('dashboard')" class="block w-full text-center py-2.5 bg-slate-900 text-white rounded-lg font-medium text-sm mt-2"><i class="fa-solid fa-wallet text-xs mr-1"></i> Client Dashboard</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS (SPA ROUTER) -->
+    <main class="flex-grow">
+
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page-section active">
+            <!-- Hero Section -->
+            <section class="relative bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white py-24 lg:py-32 overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="lg:w-2/3">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-6">
+                            <i class="fa-solid fa-shield-halved"></i> Tier-1 Institutional Asset Management
+                        </span>
+                        <h1 class="serif-title text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
+                            Intelligent wealth creation for the global investor.
+                        </h1>
+                        <p class="text-lg text-slate-300 mb-10 max-w-xl font-light leading-relaxed">
+                            Navigate international markets with systematic, algorithmic, and expertly managed capital portfolios built to outperform volatility.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="navigateTo('register')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg shadow-lg shadow-blue-900/30 transition text-center">Get Started Today</button>
+                            <button onclick="navigateTo('plans')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-lg border border-white/10 backdrop-blur-sm transition text-center">View Asset Plans</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Market Stats Ticker Simulation -->
+            <div class="bg-slate-950 border-y border-slate-800 text-xs py-3 text-slate-400 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 flex space-x-8 animate-pulse justify-between items-center">
+                    <div><span class="text-slate-500 font-bold">S&P 500</span> <span class="text-emerald-400 font-medium">5,117.01 (+0.42%)</span></div>
+                    <div class="hidden sm:block"><span class="text-slate-500 font-bold">NASDAQ</span> <span class="text-emerald-400 font-medium">16,118.50 (+0.81%)</span></div>
+                    <div><span class="text-slate-500 font-bold">SCHRODERS ALPHA FUND</span> <span class="text-emerald-400 font-medium">Accumulating (+14.6% YTD)</span></div>
+                    <div class="hidden md:block"><span class="text-slate-500 font-bold">BTC/USD</span> <span class="text-rose-400 font-medium">$67,240 (-1.12%)</span></div>
+                </div>
+            </div>
+
+            <!-- Statistics Grid -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-8 rounded-xl shadow-xl border border-slate-100">
+                    <div class="text-center md:border-r border-slate-100 p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-slate-900">$4.2B+</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Assets Under Management</p>
+                    </div>
+                    <div class="text-center md:border-r border-slate-100 p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-slate-900">142K</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Global Active Clients</p>
+                    </div>
+                    <div class="text-center md:border-r border-slate-100 p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-slate-900">99.4%</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Retention Rate</p>
+                    </div>
+                    <div class="text-center p-2">
+                        <p class="text-3xl md:text-4xl font-bold text-blue-600">No. 1</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-1">Wealth Advisory 2026</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Brief Overview Section -->
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-blue-600 font-bold tracking-widest text-xs uppercase block mb-3">Institutional Grade Ecosystem</span>
+                        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-slate-900 mb-6">Why discerning global institutions select Schroders.</h2>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            Founded on transparency and driven by rigorous quantitative execution, Schroders Investments bridges the gap between individual accredited investors and elite, modern market operations.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 text-blue-600"><i class="fa-solid fa-circle-check"></i></div>
+                                <div><strong>Automated Hedging:</strong> Adaptive algorithmic mechanisms minimize downside risk across multi-asset categories.</div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 text-blue-600"><i class="fa-solid fa-circle-check"></i></div>
+                                <div><strong>Regulatory Frameworks:</strong> Fully compliant tier-one management with custodial protection parameters.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-tr from-slate-100 to-slate-200 rounded-2xl p-4 border border-slate-200/60 shadow-inner relative">
+                        <!-- Simulated Chart Asset Overlay -->
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-100">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Performance Matrix</h4>
+                                    <p class="text-xs text-slate-500">Schroders Compound Growth</p>
+                                </div>
+                                <span class="bg-emerald-50 text-emerald-700 text-xs px-2.5 py-1 rounded font-bold">+24.8% YoY</span>
+                            </div>
+                            <div class="h-40 flex items-end gap-2 pt-4 border-b border-l border-slate-100 px-2">
+                                <div class="w-full bg-slate-200 rounded-t h-1/4"></div>
+                                <div class="w-full bg-slate-300 rounded-t h-2/5"></div>
+                                <div class="w-full bg-blue-400 rounded-t h-1/2"></div>
+                                <div class="w-full bg-blue-500 rounded-t h-2/3"></div>
+                                <div class="w-full bg-blue-600 rounded-t h-5/6"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-2 text-center">Historical performance is indicative of strong strategic alpha models.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Slider Section -->
+            <section class="bg-slate-900 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-xl mx-auto mb-16">
+                        <span class="text-blue-400 uppercase tracking-widest text-xs font-bold">Endorsements</span>
+                        <h2 class="serif-title text-3xl font-bold mt-2">Trusted by Global Portfolio Leaders</h2>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700/50">
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-300 text-sm italic mb-6">"The systemic yields provided by Schroders' real estate capital structures allowed our firm to diversify risk safely during high inflation eras."</p>
+                            <div>
+                                <p class="font-bold text-white text-sm">Marcus Vance</p>
+                                <p class="text-xs text-slate-500">Chief Asset Allocator, Avanti Corp</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700/50">
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-300 text-sm italic mb-6">"Their algorithmic quantitative equities fund outperformed standard index trackers by over 12% in my private high-net-worth portfolio."</p>
+                            <div>
+                                <p class="font-bold text-white text-sm">Helena Rostova</p>
+                                <p class="text-xs text-slate-500">Private Accredited Wealth Client</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700/50">
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-300 text-sm italic mb-6">"Prompt withdrawals, comprehensive portfolio dashboards, and impeccable institutional support. A stellar platform."</p>
+                            <div>
+                                <p class="font-bold text-white text-sm">David Chen</p>
+                                <p class="text-xs text-slate-500">Managing Director, DC Venture Group</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Global Call to Action -->
+            <section class="py-16 bg-blue-600 text-white text-center relative overflow-hidden">
+                <div class="max-w-4xl mx-auto px-4 relative z-10">
+                    <h2 class="serif-title text-3xl font-bold mb-4">Empower your capital reserves today.</h2>
+                    <p class="text-blue-100 mb-8 max-w-lg mx-auto text-sm">Account onboarding requires minimal documentation setup. Complete processing takes less than 5 minutes.</p>
+                    <button onclick="navigateTo('register')" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-md">Register Wealth Account</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ABOUT US PAGE -->
+        <div id="page-about" class="page-section py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Architecting Global Financial Security</h1>
+                    <p class="text-slate-600">For over a decade, Schroders Investments has designed predictive wealth mechanisms tailored to risk mitigation and long-term macro-alpha generation.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-900">Our Strategic Philosophy</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">We believe traditional banking assets no longer represent sufficient safe-havens for sustained capital preservation. Modern geopolitical paradigms require multi-asset portfolio flexibility, algorithmic balance adjustments, and institutional agility.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">Our investment matrices run on proprietary server systems, monitoring commodities markets, sovereign bond performance spreads, and emergent digital tokenization parameters to ensure alpha distribution channels remain continuously functional.</p>
+                    </div>
+                    <div class="bg-slate-900 text-white p-8 rounded-2xl border border-slate-800">
+                        <h4 class="font-bold text-blue-400 uppercase tracking-widest text-xs mb-4">Core Structural Directives</h4>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-building-columns text-blue-500"></i> Absolute regulatory validation protocols</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-fingerprint text-blue-500"></i> Multi-sig tier-1 cold custodial vaults</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-microchip text-blue-500"></i> AI-integrated systematic data risk models</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES PAGE -->
+        <div id="page-services" class="page-section py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Elite Asset Allocation Sectors</h1>
+                    <p class="text-slate-600 text-sm">We provide optimized operational deployment vehicles across premium market avenues.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-landmark"></i></div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-3">Institutional Wealth Management</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">Bespoke portfolio advisory blueprints structured uniquely for cross-border private operations and high-net-worth familial offices.</p>
+                        <button onclick="navigateTo('plans')" class="text-blue-600 font-semibold text-xs flex items-center gap-1 hover:gap-2 transition">Explore Strategy <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-cubes"></i></div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-3">Algorithmic Arbitrage Execution</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">High-speed system deployment checking micro-inefficiencies across global cryptocurrency structures and traditional forex indices.</p>
+                        <button onclick="navigateTo('plans')" class="text-blue-600 font-semibold text-xs flex items-center gap-1 hover:gap-2 transition">Explore Strategy <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-city"></i></div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-3">Commercial Real Estate Syndication</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">Direct fractional ownership structures targeting institutional warehouse space, tech hubs, and multi-tenant high-density infrastructure assets.</p>
+                        <button onclick="navigateTo('plans')" class="text-blue-600 font-semibold text-xs flex items-center gap-1 hover:gap-2 transition">Explore Strategy <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVESTMENT PLANS PAGE -->
+        <div id="page-plans" class="page-section py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Strategic Capital Tiers</h1>
+                    <p class="text-slate-600 text-sm">Select an optimal operational blueprint aligned precisely to your deployment goals.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                    <!-- Plan 1 -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-8 flex flex-col justify-between hover:shadow-lg transition">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Tier 01</span>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Alpha Core Portfolio</h3>
+                            <div class="mb-6"><span class="text-4xl font-extrabold text-slate-900">1.8%</span> <span class="text-slate-500 text-sm">/ Daily Yield</span></div>
+                            <ul class="space-y-3 text-xs text-slate-600 mb-8 border-t border-slate-100 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Min Allocation: <strong>$500</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Max Allocation: <strong>$9,999</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Capital Lock Duration: <strong>14 Days</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Smart Portfolio Rebalancing</li>
+                            </ul>
+                        </div>
+                        <button onclick="navigateTo('register')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-lg text-sm transition">Initiate Position</button>
+                    </div>
+                    <!-- Plan 2 (Featured) -->
+                    <div class="bg-white border-2 border-blue-600 rounded-xl p-8 flex flex-col justify-between shadow-xl relative transform lg:-translate-y-2">
+                        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase">Most Selected Strategic Unit</span>
+                        <div>
+                            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-1 mt-2">Tier 02</span>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Institutional Arbitrage</h3>
+                            <div class="mb-6"><span class="text-4xl font-extrabold text-slate-900">2.5%</span> <span class="text-slate-500 text-sm">/ Daily Yield</span></div>
+                            <ul class="space-y-3 text-xs text-slate-600 mb-8 border-t border-slate-100 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Min Allocation: <strong>$10,000</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Max Allocation: <strong>$49,999</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Capital Lock Duration: <strong>30 Days</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Priority Account Officer Routing</li>
+                            </ul>
+                        </div>
+                        <button onclick="navigateTo('register')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg text-sm transition shadow-md shadow-blue-200">Initiate Position</button>
+                    </div>
+                    <!-- Plan 3 -->
+                    <div class="bg-slate-900 text-white rounded-xl p-8 flex flex-col justify-between hover:shadow-lg transition">
+                        <div>
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-1">Tier 03</span>
+                            <h3 class="text-xl font-bold text-white mb-4">Sovereign Macro Fund</h3>
+                            <div class="mb-6"><span class="text-4xl font-extrabold text-white">3.8%</span> <span class="text-slate-400 text-sm">/ Daily Yield</span></div>
+                            <ul class="space-y-3 text-xs text-slate-400 mb-8 border-t border-slate-800 pt-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Min Allocation: <strong>$50,000</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Max Allocation: <strong>Unlimited</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Capital Lock Duration: <strong>60 Days</strong></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400"></i> Direct Real-time Liquidity Streaming</li>
+                            </ul>
+                        </div>
+                        <button onclick="navigateTo('register')" class="w-full bg-white text-slate-900 hover:bg-slate-100 font-medium py-2.5 rounded-lg text-sm transition">Initiate Position</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ PAGE -->
+        <div id="page-faq" class="page-section py-16 bg-slate-50">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h1>
+                    <p class="text-slate-600 text-sm">Essential operational governance parameters clear and accessible.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">How do I fund my capital deposit allocation?</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">We support instantly cleared modern payment structures including automated wire processing, institutional stablecoins (USDT/USDC ERC-20 networks), and direct instant multi-banking links via your portfolio gateway dashboard.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">What is the exact settlement duration for withdrawal processing requests?</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Standard retail liquidity allocations clear within 2 to 6 hours. High-net-worth sovereign enterprise tier clearing limits are subjected to multi-signature validation loops, guaranteeing transmission in under 12 hours max.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">Are there hidden operational upkeep percentages?</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Zero hidden fees. Schroders operates strictly under an performance-integrated architecture—we generate our operational yields directly via market alpha overperformance targets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOG PAGE -->
+        <div id="page-blog" class="page-section py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h1 class="serif-title text-4xl font-bold text-slate-900 mb-4">Schroders Insights & Market Intelligence</h1>
+                    <p class="text-slate-600 text-sm">Macroeconomic quantitative research compiled weekly by asset advisory units.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Post 1 -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition">
+                        <div class="h-48 bg-slate-800 relative flex items-center justify-center text-slate-600 text-4xl"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="p-6">
+                            <span class="text-blue-600 text-[10px] font-bold uppercase tracking-wider block mb-2">Macro Strategy</span>
+                            <h3 class="font-bold text-base text-slate-900 mb-3 hover:text-blue-600 cursor-pointer">Interest Rate Normalization Trends: 2026 Sovereign Analysis</h3>
+                            <p class="text-slate-600 text-xs line-clamp-3 mb-4">Evaluating central banking adjustment trends and positioning multi-asset portfolios to leverage changing bond yield curvatures.</p>
+                            <span class="text-slate-400 text-[10px]">June 15, 2026 • 6 min read</span>
+                        </div>
+                    </div>
+                    <!-- Post 2 -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition">
+                        <div class="h-48 bg-slate-900 relative flex items-center justify-center text-slate-600 text-4xl"><i class="fa-solid fa-coins"></i></div>
+                        <div class="p-6">
+                            <span class="text-blue-600 text-[10px] font-bold uppercase tracking-wider block mb-2">Digital Commodities</span>
+                            <h3 class="font-bold text-base text-slate-900 mb-3 hover:text-blue-600 cursor-pointer">Tokenized Liquidity Networks & Cross-Border Corporate Settlements</h3>
+                            <p class="text-slate-600 text-xs line-clamp-3 mb-4">How instant multi-sig smart contracts are eliminating banking delays for enterprise asset distribution models.</p>
+                            <span class="text-slate-400 text-[10px]">June 11, 2026 • 4 min read</span>
+                        </div>
+                    </div>
+                    <!-- Post 3 -->
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition">
+                        <div class="h-48 bg-slate-950 relative flex items-center justify-center text-slate-600 text-4xl"><i class="fa-solid fa-city"></i></div>
+                        <div class="p-6">
+                            <span class="text-blue-600 text-[10px] font-bold uppercase tracking-wider block mb-2">Real Estate</span>
+                            <h3 class="font-bold text-base text-slate-900 mb-3 hover:text-blue-600 cursor-pointer">Commercial Space vs Tech-Logistics Distribution Hubs</h3>
+                            <p class="text-slate-600 text-xs line-clamp-3 mb-4">A comparative study analyzing shifting yield structures within suburban infrastructure asset allocation sectors.</p>
+                            <span class="text-slate-400 text-[10px]">June 02, 2026 • 8 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT US PAGE -->
+        <div id="page-contact" class="page-section py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-3 gap-12 bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-slate-100">
+                    <div class="lg:col-span-1 space-y-6">
+                        <div>
+                            <h1 class="serif-title text-3xl font-bold text-slate-900 mb-2">Connect with Us</h1>
+                            <p class="text-slate-500 text-xs">Our institutional concierges sit available globally around the clock.</p>
+                        </div>
+                        <div class="space-y-4 text-xs text-slate-600">
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-blue-600 text-base"></i> 31 Gresham Street, London, EC2V 7QA, United Kingdom</div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-blue-600 text-base"></i> institutions@schroders-investments.com</div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-blue-600 text-base"></i> +44 (0) 20 7658 6000</div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <form onsubmit="event.preventDefault(); alert('Message dispatched. An asset relations representative will reach out shortly.');" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Full Legal Name</label>
+                                    <input type="text" required class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Corporate/Personal Email</label>
+                                    <input type="email" required class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Inquiry Category Target</label>
+                                <select class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600 bg-white">
+                                    <option>Institutional Wealth Allocation ($50k+)</option>
+                                    <option>Retail Client Solutions Portfolio Setup</option>
+                                    <option>Corporate Partnership Proposals</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Message Body</label>
+                                <textarea rows="4" required class="w-full border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600"></textarea>
+                            </div>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition shadow-md">Transmit Secure Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTRATION PAGE -->
+        <div id="page-register" class="page-section py-16 bg-slate-100/60 min-h-[80vh] flex items-center">
+            <div class="max-w-md mx-auto w-full px-4">
+                <div class="bg-white p-8 rounded-xl shadow-xl border border-slate-200">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex p-2.5 bg-blue-50 text-blue-600 rounded-lg mb-2"><i class="fa-solid fa-user-plus text-xl"></i></div>
+                        <h2 class="font-bold text-xl text-slate-900">Create Investment Account</h2>
+                        <p class="text-slate-500 text-xs mt-1">Begin global market wealth deployment</p>
+                    </div>
+                    <form onsubmit="event.preventDefault(); navigateTo('dashboard');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Full Legal Name</label>
+                            <input type="text" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Email Address</label>
+                            <input type="email" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Secure Password</label>
+                            <input type="password" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div class="flex items-center gap-2 py-1">
+                            <input type="checkbox" required id="terms" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                            <label for="terms" class="text-slate-500 text-[11px]">I confirm regulatory compliance and accept terms of usage.</label>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-sm transition">Register Corporate Vault</button>
+                    </form>
+                    <p class="text-xs text-center text-slate-500 mt-6">Existing allocation profile? <button onclick="navigateTo('login')" class="text-blue-600 font-semibold hover:underline">Sign In</button></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGIN PAGE -->
+        <div id="page-login" class="page-section py-16 bg-slate-100/60 min-h-[80vh] flex items-center">
+            <div class="max-w-md mx-auto w-full px-4">
+                <div class="bg-white p-8 rounded-xl shadow-xl border border-slate-200">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex p-2.5 bg-blue-50 text-blue-600 rounded-lg mb-2"><i class="fa-solid fa-lock-keyhole text-xl"></i></div>
+                        <h2 class="font-bold text-xl text-slate-900">Secure Client Access</h2>
+                        <p class="text-slate-500 text-xs mt-1">Accessing encrypted portfolio environments</p>
+                    </div>
+                    <form onsubmit="event.preventDefault(); navigateTo('dashboard');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Account Email Address</label>
+                            <input type="email" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><label class="text-xs font-medium text-slate-600">Password</label><a href="#" class="text-blue-600 text-[11px] hover:underline">Reset Phrase?</a></div>
+                            <input type="password" required class="w-full border border-slate-200 rounded-lg p-2.5 text-sm focus:outline-none focus:border-blue-600">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-sm transition shadow-md shadow-blue-100">Authorize Session</button>
+                    </form>
+                    <p class="text-xs text-center text-slate-500 mt-6">New asset management applicant? <button onclick="navigateTo('register')" class="text-blue-600 font-semibold hover:underline">Open Account</button></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLIENT PORTFOLIO DASHBOARD -->
+        <div id="page-dashboard" class="page-section py-10 bg-slate-900 text-slate-100 min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Dashboard Welcome Banner -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-6 mb-8 gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-circle-user text-blue-500"></i> Premium Wealth Vault</h1>
+                        <p class="text-slate-400 text-xs mt-1">Account reference status: <span class="text-emerald-400 font-medium font-mono">SCH-9402-ACTIVE</span></p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="alert('Secure dynamic wire link generation active. Please interface via institutions@schroders-investments.com if limits exceed $100k.');" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2.5 rounded-lg shadow transition flex items-center gap-1.5"><i class="fa-solid fa-money-bill-transfer"></i> Deposit Capital</button>
+                        <button onclick="alert('Liquidity execution screen operational. Processing settlement time: 2 hours.');" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-xs px-4 py-2.5 rounded-lg transition flex items-center gap-1.5"><i class="fa-solid fa-arrow-up-from-bracket"></i> Liquidate/Withdraw</button>
+                    </div>
+                </div>
+
+                <!-- Financial Stats Matrix Summary Boxes -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2"><span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Account Value</span><i class="fa-solid fa-vault text-blue-500 text-sm"></i></div>
+                        <p class="text-3xl font-extrabold font-mono text-white">$124,580.40</p>
+                        <span class="text-[10px] text-emerald-400 flex items-center gap-1 mt-1"><i class="fa-solid fa-caret-up"></i> +$2,410.15 accrued this calendar week</span>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2"><span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Net Accumulation Profits</span><i class="fa-solid fa-chart-line text-emerald-400 text-sm"></i></div>
+                        <p class="text-3xl font-extrabold font-mono text-emerald-400">+$18,940.22</p>
+                        <span class="text-[10px] text-slate-400 block mt-1">Total combined historical strategic performance yield</span>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-800 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2"><span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Active Capital Deployments</span><i class="fa-solid fa-circle-nodes text-amber-400 text-sm"></i></div>
+                        <p class="text-3xl font-extrabold font-mono text-white">02 <span class="text-xs text-slate-500 font-sans font-normal">Active Positions</span></p>
+                        <span class="text-[10px] text-amber-400 block mt-1">Tier-2 Institutional Arbitrage Strategy processing</span>
+                    </div>
+                </div>
+
+                <!-- Portfolio Analytics Lists Table Mock -->
+                <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-6">
+                    <h3 class="font-bold text-base text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-list-check text-blue-500"></i> Active Deployment Allocations</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 uppercase text-[10px] tracking-wider">
+                                <tr>
+                                    <th class="p-4">Strategic Allocation Category</th>
+                                    <th class="p-4">Principal Value</th>
+                                    <th class="p-4">Daily Yield Factor</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4">Term Expiry Lock</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/50">
+                                <tr>
+                                    <td class="p-4 font-semibold text-white">Institutional Arbitrage Asset Unit</td>
+                                    <td class="p-4 font-mono">$75,000.00</td>
+                                    <td class="p-4 text-emerald-400 font-mono">2.5% / day</td>
+                                    <td class="p-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Compounding</span></td>
+                                    <td class="p-4 text-slate-400 font-mono">18 Days Remaining</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold text-white">Alpha Core Liquid Reserve Portfolio</td>
+                                    <td class="p-4 font-mono">$30,640.18</td>
+                                    <td class="p-4 text-emerald-400 font-mono">1.8% / day</td>
+                                    <td class="p-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Compounding</span></td>
+                                    <td class="p-4 text-slate-400 font-mono">02 Days Remaining</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER DESIGN -->
+    <footer class="bg-slate-950 text-slate-400 text-xs border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Corporate Offices</h5>
+                    <p class="leading-relaxed text-slate-500">London, United Kingdom<br>Frankfurt, Germany<br>Singapore FinTech Quarter</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Strategic Access</h5>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><button onclick="navigateTo('plans')" class="hover:text-white transition">Asset Investment Tiers</button></li>
+                        <li><button onclick="navigateTo('services')" class="hover:text-white transition">Quantitative Research Services</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Governance</h5>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><button onclick="navigateTo('faq')" class="hover:text-white transition">FAQ Documentation</button></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Custody Clauses</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase tracking-widest text-[11px]">Secure Networks</h5>
+                    <div class="flex gap-3 text-base mt-2">
+                        <a href="#" class="hover:text-white text-slate-600 transition"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-white text-slate-600 transition"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="hover:text-white text-slate-600 transition"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-slate-900 my-6">
+            <p class="text-center text-slate-600 text-[11px] leading-relaxed">
+                &copy; 2026 Schroders Investments System Inc. All institutional asset operations are protected by multi-signature tier-1 security custody frameworks. Historical performance matrices present zero absolute guarantees of future market expansion alpha.
+            </p>
+        </div>
+    </footer>
+
+    <!-- LIVE CHET POPUP SIMULATOR WIDGET -->
+    <div id="live-chat" class="fixed bottom-6 right-6 z-50 bg-white border border-slate-200 p-4 rounded-xl shadow-2xl w-72 hidden md:block">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-3">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-bold text-xs text-slate-900">Institutional Concierge</span>
+            </div>
+            <i class="fa-solid fa-headset text-slate-400"></i>
+        </div>
+        <p class="text-slate-600 text-[11px] leading-relaxed mb-3">Welcome to Schroders Secure Comms Desk. Let us know if you require bespoke corporate tier setup advice.</p>
+        <button onclick="alert('Secure encrypted channel initializing... Use support@schroders-investments.com for urgent queues.');" class="w-full bg-blue-600 text-white text-center py-2 rounded-lg font-semibold text-xs shadow transition hover:bg-blue-700">Initialize Chat</button>
+    </div>
+
+    <!-- SIMPLE JAVASCRIPT SINGLE PAGE ROUTER -->
+    <script>
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show requested page
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            // Close mobile menu layout if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Mobile Menu Button Functionality Trigger
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
